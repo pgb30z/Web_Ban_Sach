@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Web Bán Hàng</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        .header {
+            background-image: linear-gradient(0, #cfc2c2);
+        }
+
+        .header__navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        .header__navbar-list {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .header__navbar-item,
+        .header__navbar-list {
+            display: inline-block;
+            font-size: 1.5rem;
+            color: black;
+        }
+
+        .header__navbar-item {
+            margin: 8px;
+        }
+
+        .header a {
+            text-decoration: none;
+        }
+
+        .sidebar {
+            background-color: #007bff;
+            color: white;
+            padding: 1rem;
+            min-height: 100%;
+        }
+
+        .profile {
+            margin: 24px 0;
+            padding: 16px;
+            background-color: #fff;
+            border-radius: 4px;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 1rem 0;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            text-align: left;
+        }
+
+        .footer-item {
+            flex: 1;
+            padding: 1rem;
+            list-style: none;
+        }
+
+        .card-img-top {
+            object-fit: cover;
+        }
+
+        form[role="search"] {
+            max-width: 900px;
+            width: 100%;
+            align-items: center;
+        }
+
+        .carousel-item img {
+            height: 250px;
+            display: block;
+            margin: auto;
+            width: 50% !important;
+        }
+
+        .carousel-item {
+            padding-top: 10px;
+        }
+
+        .social_media {
+            text-align: left;
+        }
+
+        .carousel-item1 img {
+            height: 430px;
+            display: block;
+            margin: auto;
+            width: 150% !important;
+        }
+
+        .category-box {
+            background-color: #e5fde3;
+            border: 1px solid #90aaf9;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .category-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-box p {
+            margin: 0;
+            font-weight: 500;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="header__navbar">
+            <ul class="header__navbar-list">
+                <li class="header__navbar-item"><i class="bi bi-house-door-fill"></i> Trang chủ</li>
+                <li class="header__navbar-item"><i class="bi bi-box-seam"></i> Sản phẩm</li>
+                <li class="header__navbar-item"><i class="bi bi-telephone-fill"></i> Liên hệ</li>
+            </ul>
+            <ul class="header__navbar-list">
+                <li class="header__navbar-item"><i class="bi bi-bell-fill"></i> Thông báo</li>
+                <li class="header__navbar-item"><i class="bi bi-cart-fill"></i> Giỏ hàng</li>
+
+                <!-- Nút mở modal Thông tin cá nhân -->
+                <li class="header__navbar-item"
+                    id="profileNavItem"
+                    style="cursor: pointer;">
+                    <i class="bi bi-person-lines-fill"></i> Thông tin cá nhân
+                </li>
+
+                <!-- Item Tài khoản (được script.js bắt theo text "Tài khoản") -->
+                <li class="header__navbar-item"><i class="bi bi-person-fill"></i> Tài khoản</li>
+            </ul>
+        </nav>
+
+        <!-- Logo + Search -->
+        <div class="container d-flex align-items-center py-3">
+            <div class="me-4">
+                <img src="https://cdn1.fahasa.com/skin/frontend/ma_vanese/fahasa/images/fahasa-logo.png" alt="Logo"
+                    style="width: 200px;">
+            </div>
+            <form class="d-flex flex-grow-1" role="search">
+                <input class="form-control me-2" type="search" placeholder="Tìm kiếm sản phẩm..."
+                    aria-label="Search">
+                <button class="btn btn-outline-dark" type="submit"><i class="bi bi-search"></i></button>
+            </form>
+        </div>
+    </header>
+
+    <!-- Banner Quảng Cáo -->
+    <div id="promoCarouselTop" class="carousel slide mb-4" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="img/banner1.jpg" class="d-block w-100" alt="Banner 1">
+            </div>
+            <div class="carousel-item">
+                <img src="img/banner2.jpg" class="d-block w-100" alt="Banner 2">
+            </div>
+            <div class="carousel-item">
+                <img src="img/banner3.jpg" class="d-block w-100" alt="Banner 3">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#promoCarouselTop" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#promoCarouselTop" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+
+    <!-- Banner Quảng Cáo + Ảnh phụ -->
+    <div class="container mb-4">
+        <div class="row">
+            <!-- Ảnh nhỏ bên trái -->
+            <div class="col-md-3 mb-3 d-none d-md-block">
+                <img src="img/banner4.jpg" alt="Ảnh phụ 1" class="img-fluid rounded shadow">
+                <img src="img/banner5.jpg" alt="Ảnh phụ 2" class="img-fluid rounded shadow mt-3">
+            </div>
+
+            <!-- Carousel chính giữa -->
+            <div class="col-md-6">
+                <div id="promoCarouselMain" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item1 active">
+                            <img src="img/banner10.jpg" class="d-block w-100" alt="Banner 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img/banner2.jpg" class="d-block w-100" alt="Banner 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img/banner3.jpg" class="d-block w-100" alt="Banner 3">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#promoCarouselMain"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#promoCarouselMain"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Ảnh nhỏ bên phải -->
+            <div class="col-md-3 mb-3 d-none d-md-block">
+                <img src="img/banner6.jpg" alt="Ảnh phụ 3" class="img-fluid rounded shadow">
+                <img src="img/banner7.jpg" alt="Ảnh phụ 4" class="img-fluid rounded shadow mt-3">
+            </div>
+        </div>
+    </div>
+
+    <!-- DANH MỤC SẢN PHẨM -->
+    <div class="container mt-4">
+        <h1 class="text-center mb-4" style="background-color: #e5fde3;">DANH MỤC SẢN PHẨM</h1>
+
+        <!-- Danh mục tròn -->
+        <div class="row mb-4 text-center">
+            <div class="row">
+                <div class="col-md-2 col-6 mb-3">
+                    <div class="category-box text-center p-3">
+                        <a href="#"><img src="img/book7.jpg" class="img-fluid rounded-circle mb-2" alt="Sách Văn Học"></a>
+                        <p>Sách Văn Học</p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-6 mb-3">
+                    <div class="category-box text-center p-3">
+                        <a href="#"><img src="img/book8.jpg" class="img-fluid rounded-circle mb-2" alt="Sách Thiếu Nhi"></a>
+                        <p>Sách Thiếu Nhi</p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-6 mb-3">
+                    <div class="category-box text-center p-3">
+                        <a href="#"><img src="img/book9.jpg" class="img-fluid rounded-circle mb-2" alt="Sách Lịch Sử"></a>
+                        <p>Sách Lịch Sử</p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-6 mb-3">
+                    <div class="category-box text-center p-3">
+                        <a href="#"><img src="img/book10.jpg" class="img-fluid rounded-circle mb-2" alt="Truyện Tranh"></a>
+                        <p>Truyện Tranh</p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-6 mb-3">
+                    <div class="category-box text-center p-3">
+                        <a href="#"><img src="img/book12.jpg" class="img-fluid rounded-circle mb-2" alt="Giáo Khoa"></a>
+                        <p>Giáo Khoa</p>
+                    </div>
+                </div>
+                <div class="col-md-2 col-6 mb-3">
+                    <div class="category-box text-center p-3">
+                        <a href="#"><img src="img/book11.jpg" class="img-fluid rounded-circle mb-2" alt="Sách Ngoại Ngữ"></a>
+                        <p>Sách Ngoại Ngữ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Danh sách sản phẩm -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+
+                    <!-- Product 1 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card h-100">
+                            <img src="img/book1.jpg" class="card-img-top" alt="Bộ truyện tranh Bác Hồ sống mãi">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Bộ truyện tranh mang chủ đề Bác Hồ sống mãi</h5>
+                                <p class="card-text">Chính là một cố gắng của các tác giả và nhà xuất bản trong việc
+                                    thực hiện lời dạy của Bác Hồ, từng khuôn hình và từng câu chuyện mang nội dung giáo
+                                    dục đậm đà đầy ý vị.</p>
+                                <p class="fw-bold">Giá: $100</p>
+                                <button class="btn btn-primary w-100 mt-auto">
+                                    <i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ hàng
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card h-100">
+                            <img src="img/book2.jpg" class="card-img-top" alt="Nhật ký trong tù">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Tác Phẩm Văn Học Trong Nhà Trường - Nhật Ký Trong Tù</h5>
+                                <p class="card-text">"Nhật ký trong tù" là tập thơ chữ Hán gồm 133 bài thơ do Chủ tịch
+                                    Hồ Chí Minh sáng tác từ 29/08/1942 đến 10/09/1943. Mang ý nghĩa sâu sắc về cách
+                                    mạng Việt Nam.</p>
+                                <p class="fw-bold">Giá: $150</p>
+                                <button class="btn btn-primary w-100 mt-auto">
+                                    <i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ hàng
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card h-100">
+                            <img src="img/book3.jpg" class="card-img-top" alt="Búp Sen Xanh, Bông Sen Vàng">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Búp Sen Xanh, Bông Sen Vàng</h5>
+                                <p class="card-text">Hành trình của một cậu bé xứ Nghệ mang trong mình khát vọng lớn
+                                    lao. Mỗi trang sách là mảnh ghép về hành trình hình thành tư tưởng, ra đi tìm đường
+                                    cứu nước.</p>
+                                <p class="fw-bold">Giá: $120</p>
+                                <button class="btn btn-primary w-100 mt-auto">
+                                    <i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ hàng
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 4 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card h-100">
+                            <img src="img/book4.jpg" class="card-img-top" alt="Chuyện Kể Từ Làng Sen">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Chuyện Kể Từ Làng Sen</h5>
+                                <p class="card-text">Chuyện kể từ làng Sen, Bác Hồ cầu hiền tài, Bác Hồ - tấm gương
+                                    sáng mãi, Bác Hồ với thiếu niên nhi đồng...</p>
+                                <p class="fw-bold">Giá: $120</p>
+                                <button class="btn btn-primary w-100 mt-auto">
+                                    <i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ hàng
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 5 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card h-100">
+                            <img src="img/book5.jpg" class="card-img-top" alt="Các Triều Đại Việt Nam">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Các Triều Đại Việt Nam</h5>
+                                <p class="card-text">Dân tộc Việt Nam anh hùng đã trải qua hơn bốn ngàn năm lịch sử dựng
+                                    nước và giữ nước.</p>
+                                <p class="fw-bold">Giá: $60</p>
+                                <button class="btn btn-primary w-100 mt-auto">
+                                    <i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ hàng
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 6 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card h-100">
+                            <img src="img/book6.jpg" class="card-img-top" alt="Những Anh Hùng Trẻ Tuổi">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Những Anh Hùng Trẻ Tuổi</h5>
+                                <p class="card-text">Chuyện Cô Gái Ngã Ba Đồng Lộc là câu chuyện về mười cô gái thanh
+                                    niên xung phong đã khắc ghi tên mình.</p>
+                                <p class="fw-bold">Giá: $60</p>
+                                <button class="btn btn-primary w-100 mt-auto">
+                                    <i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ hàng
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 7 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card h-100">
+                            <img src="img/book7.jpg" class="card-img-top" alt="Người đàn ông mang tên OVE">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Người đàn ông mang tên OVE</h5>
+                                <p class="card-text">Người đàn ông mang tên OVE chính là một cố gắng của các tác giả...
+                                </p>
+                                <p class="fw-bold">Giá: $60</p>
+                                <button class="btn btn-primary w-100 mt-auto">
+                                    <i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ hàng
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 8 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card h-100">
+                            <img src="img/book11.jpg" class="card-img-top" alt="Giáo trình HSK">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Giáo trình HSK</h5>
+                                <p class="card-text">Giáo trình ôn thi HSK bồi dưỡng ôn thi học sinh giỏi xuất sắc cấp
+                                    thành phố.</p>
+                                <p class="fw-bold">Giá: $60</p>
+                                <button class="btn btn-primary w-100 mt-auto">
+                                    <i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ hàng
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 9 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card h-100">
+                            <img src="img/book2.jpg" class="card-img-top" alt="Bộ truyện tranh Bác Hồ sống mãi 2">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Bộ truyện tranh mang chủ đề Bác Hồ sống mãi (Tập 2)</h5>
+                                <p class="card-text">Những câu chuyện tiếp nối, mang giá trị giáo dục sâu sắc.</p>
+                                <p class="fw-bold">Giá: $100</p>
+                                <button class="btn btn-primary w-100 mt-auto">
+                                    <i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ hàng
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 10 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card h-100">
+                            <img src="img/book4.jpg" class="card-img-top" alt="Nhật ký trong tù 2">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Nhật Ký Trong Tù - Ấn bản đặc biệt</h5>
+                                <p class="card-text">Ấn bản có chú giải đầy đủ, phù hợp cho học sinh - sinh viên.</p>
+                                <p class="fw-bold">Giá: $150</p>
+                                <button class="btn btn-primary w-100 mt-auto">
+                                    <i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ hàng
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 11 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card h-100">
+                            <img src="img/book1.jpg" class="card-img-top" alt="Búp Sen Xanh bản mới">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Búp Sen Xanh - Tái bản</h5>
+                                <p class="card-text">Tái bản với hình minh họa mới, nội dung bám sát chương trình học.
+                                </p>
+                                <p class="fw-bold">Giá: $120</p>
+                                <button class="btn btn-primary w-100 mt-auto">
+                                    <i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ hàng
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 12 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card h-100">
+                            <img src="img/book3.jpg" class="card-img-top" alt="Chuyện Kể Từ Làng Sen bản mới">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">Chuyện Kể Từ Làng Sen - Bản mở rộng</h5>
+                                <p class="card-text">Thêm nhiều câu chuyện và tư liệu quý về cuộc đời Bác Hồ.</p>
+                                <p class="fw-bold">Giá: $120</p>
+                                <button class="btn btn-primary w-100 mt-auto">
+                                    <i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ hàng
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- KHU GỢI Ý SÁCH BẰNG AI -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="p-3 border rounded" style="background-color:#f7f9ff;">
+                    <h4 class="mb-2">
+                        <i class="bi bi-stars"></i> Gợi ý sách bằng AI
+                    </h4>
+                    <p class="mb-2 small text-muted">
+                        Nhấn nút bên dưới để AI gợi ý thêm sách dựa trên giỏ hàng của bạn.
+                    </p>
+                    <button id="btn-ai-suggest" class="btn btn-outline-primary btn-sm">
+                        <i class="bi bi-magic"></i> Gợi ý thêm sách
+                    </button>
+                    <pre id="ai-suggestion-box" class="mt-3 mb-0 small"
+                         style="white-space:pre-wrap; background:#fff; padding:10px; border-radius:4px; border:1px solid #ddd; min-height:60px;">
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer mt-4">
+        <div class="footer-item">
+            <div class="container d-flex align-items-center py-3">
+                <div class="me-4">
+                    <img src="https://cdn1.fahasa.com/skin/frontend/ma_vanese/fahasa/images/fahasa-logo.png" alt="Logo"
+                        style="width: 200px;">
+                </div>
+            </div>
+            <p style="text-align: left;">
+                Lầu 5, 387-389 Hai Bà Trưng Quận 3 TP HCM<br>
+                Công Ty Cổ Phần Phát Hành Sách TP HCM - FAHASA<br>
+                60 - 62 Lê Lợi, Quận 1, TP. HCM, Việt Nam<br>
+                Fahasa.com nhận đặt hàng trực tuyến và giao hàng tận nơi. KHÔNG hỗ trợ đặt mua và nhận hàng trực tiếp
+                tại văn phòng cũng như tất cả Hệ Thống Fahasa trên toàn quốc.
+            </p>
+        </div>
+
+        <div class="footer-item">
+            <h2>DỊCH VỤ</h2>
+            <p><a href="#" class="text-white text">Điều khoản sử dụng</a></p>
+            <p><a href="#" class="text-white text">Chính sách bảo mật</a></p>
+            <p><a href="#" class="text-white text">Hướng dẫn mua hàng</a></p>
+            <p><a href="#" class="text-white text">Chính sách đổi trả</a></p>
+            <p><a href="#" class="text-white text">Hỗ trợ khách hàng</a></p>
+        </div>
+
+        <div class="footer-item">
+            <h2>Tài khoản của tôi</h2>
+            <p><a href="#" class="text-white text">Đăng nhập</a></p>
+            <p><a href="#" class="text-white text">Đăng ký</a></p>
+            <p><a href="#" class="text-white text">Lịch sử đơn hàng</a></p>
+            <p><a href="#" class="text-white text">Giỏ hàng</a></p>
+            <p><a href="#" class="text-white text">Cập nhật thông tin</a></p>
+        </div>
+
+        <div class="footer-item">
+            <h2>Social Media</h2>
+            <p><a href="#" class="text-white text"><i class="bi bi-facebook"></i> Facebook</a></p>
+            <p><a href="#" class="text-white text"><i class="bi bi-twitter"></i> Twitter</a></p>
+            <p><a href="#" class="text-white text"><i class="bi bi-instagram"></i> Instagram</a></p>
+            <p><a href="#" class="text-white text"><i class="bi bi-linkedin"></i> LinkedIn</a></p>
+        </div>
+    </div>
+
+    <!-- MODAL GIỎ HÀNG -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Giỏ hàng của bạn</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <ul id="cartList" class="list-group"></ul>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <!-- Nút thanh toán trong giỏ hàng -->
+                    <button class="btn btn-primary btn-checkout">Thanh toán</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL THÔNG TIN CÁ NHÂN -->
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Thông tin cá nhân</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+
+          <div class="modal-body">
+            <section id="profile" class="profile">
+              <div class="mb-3">
+                  <label for="profile-fullname" class="form-label">Họ tên</label>
+                  <input id="profile-fullname" type="text" class="form-control">
+                  <div id="profile-fullname-error" class="text-danger mt-1 d-none">
+                      Vui lòng nhập họ tên.
+                  </div>
+              </div>
+
+              <div class="mb-3">
+                  <label for="profile-email" class="form-label">Email</label>
+                  <input id="profile-email" type="email" class="form-control">
+                  <div id="profile-email-error" class="text-danger mt-1 d-none">
+                      Vui lòng nhập email hợp lệ.
+                  </div>
+              </div>
+
+              <div class="mb-3">
+                  <label for="profile-phone" class="form-label">Số điện thoại</label>
+                  <input id="profile-phone" type="text" class="form-control">
+                  <div id="profile-phone-error" class="text-danger mt-1 d-none">
+                      Vui lòng nhập số điện thoại.
+                  </div>
+              </div>
+
+              <div class="mb-3">
+                  <label for="profile-address" class="form-label">Địa chỉ</label>
+                  <input id="profile-address" type="text" class="form-control">
+                  <div id="profile-address-error" class="text-danger mt-1 d-none">
+                      Vui lòng nhập địa chỉ.
+                  </div>
+              </div>
+
+              <button id="profile-save" class="btn btn-primary w-100">
+                  Lưu thông tin
+              </button>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- File JS -->
+    <script src="script.js"></script>
+
+</body>
+</html>
