@@ -1,7 +1,7 @@
 // script.js
 document.addEventListener('DOMContentLoaded', function () {
     // ====== CẤU HÌNH BACKEND ======
-    const API_BASE_URL = "http://localhost:3000"; // đổi thành URL backend khi deploy
+    const API_BASE_URL = "https://web-ban-sach-99po.onrender.com"; // đổi thành URL backend khi deploy
 
     // ====== BIẾN DÙNG CHUNG ======
     const searchForm = document.querySelector('form[role="search"]');
