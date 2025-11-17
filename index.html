@@ -56,6 +56,16 @@
             background-color: #fff;
             border-radius: 4px;
         }
+        .active-category {
+            border: 2px solid #28a745;
+            border-radius: 15px;
+            background: #e8ffe8;
+            transition: 0.2s;
+        }
+        .category-box:hover {
+            transform: scale(1.05);
+            transition: 0.2s;
+        }
 
         .footer {
             background-color: #333;
@@ -75,6 +85,11 @@
 
         .card-img-top {
             object-fit: cover;
+            width: 100%;
+            height: 250px;       
+            object-fit: contain; 
+            background-color: #fff;
+            padding: 10px;
         }
 
         form[role="search"] {
@@ -232,64 +247,104 @@
     <!-- DANH MỤC SẢN PHẨM -->
     <div class="container mt-4">
         <h1 class="text-center mb-4" style="background-color: #e5fde3;">DANH MỤC SẢN PHẨM</h1>
+        <!-- Bộ lọc & sắp xếp -->
+        <div class="row mb-3">
+            <div class="col-md-4 mb-2">
+                <label class="form-label fw-semibold">Lọc theo thể loại</label>
+                <select id="filterCategory" class="form-select">
+                    <option value="all">Tất cả thể loại</option>
+                    <option value="van-hoc">Sách Văn Học</option>
+                    <option value="thieu-nhi">Sách Thiếu Nhi</option>
+                    <option value="lich-su">Sách Lịch Sử</option>
+                    <option value="truyen-tranh">Truyện Tranh</option>
+                    <option value="ky-nang">Sách Kỹ Năng</option>
+                    <option value="ngoai-ngu">Sách Ngoại Ngữ</option>
+                </select>
+            </div>
+            <div class="col-md-4 mb-2">
+                <label class="form-label fw-semibold">Sắp xếp theo</label>
+                <select id="sortBy" class="form-select">
+                    <option value="none">Mặc định</option>
+                    <option value="price-asc">Giá tăng dần</option>
+                    <option value="price-desc">Giá giảm dần</option>
+                    <option value="title-asc">Tên A → Z</option>
+                </select>
+            </div>
+        </div>
 
-        <!-- Danh mục tròn -->
+            <!-- Danh mục tròn -->
         <div class="row mb-4 text-center">
             <div class="row">
+
+                <!-- Văn học -->
                 <div class="col-md-2 col-6 mb-3">
-                    <div class="category-box text-center p-3">
+                    <div class="category-box text-center p-3" data-category="van-hoc">
                         <a href="#"><img src="img/book7.jpg" class="img-fluid rounded-circle mb-2" alt="Sách Văn Học"></a>
                         <p>Sách Văn Học</p>
                     </div>
                 </div>
+
+                <!-- Thiếu nhi -->
                 <div class="col-md-2 col-6 mb-3">
-                    <div class="category-box text-center p-3">
+                    <div class="category-box text-center p-3" data-category="thieu-nhi">
                         <a href="#"><img src="img/book8.jpg" class="img-fluid rounded-circle mb-2" alt="Sách Thiếu Nhi"></a>
                         <p>Sách Thiếu Nhi</p>
                     </div>
                 </div>
+
+                <!-- Lịch sử -->
                 <div class="col-md-2 col-6 mb-3">
-                    <div class="category-box text-center p-3">
+                    <div class="category-box text-center p-3" data-category="lich-su">
                         <a href="#"><img src="img/book9.jpg" class="img-fluid rounded-circle mb-2" alt="Sách Lịch Sử"></a>
                         <p>Sách Lịch Sử</p>
                     </div>
                 </div>
+
+                <!-- Truyện tranh -->
                 <div class="col-md-2 col-6 mb-3">
-                    <div class="category-box text-center p-3">
+                    <div class="category-box text-center p-3" data-category="truyen-tranh">
                         <a href="#"><img src="img/book10.jpg" class="img-fluid rounded-circle mb-2" alt="Truyện Tranh"></a>
                         <p>Truyện Tranh</p>
                     </div>
                 </div>
+
+                <!-- Giáo khoa (nếu không có, xếp vào 'khac') -->
                 <div class="col-md-2 col-6 mb-3">
-                    <div class="category-box text-center p-3">
+                    <div class="category-box text-center p-3" data-category="giao-khoa">
                         <a href="#"><img src="img/book12.jpg" class="img-fluid rounded-circle mb-2" alt="Giáo Khoa"></a>
                         <p>Giáo Khoa</p>
                     </div>
                 </div>
+
+                <!-- Ngoại ngữ -->
                 <div class="col-md-2 col-6 mb-3">
-                    <div class="category-box text-center p-3">
+                    <div class="category-box text-center p-3" data-category="ngoai-ngu">
                         <a href="#"><img src="img/book11.jpg" class="img-fluid rounded-circle mb-2" alt="Sách Ngoại Ngữ"></a>
                         <p>Sách Ngoại Ngữ</p>
                     </div>
                 </div>
+
             </div>
         </div>
+
 
         <!-- Danh sách sản phẩm -->
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
 
-                    <!-- Product 1 -->
+                                        <!-- Product 1 -->
                     <div class="col-md-3 mb-4">
-                        <div class="card h-100">
+                        <div class="card h-100" data-category="thieu-nhi">
                             <img src="img/book1.jpg" class="card-img-top" alt="Bộ truyện tranh Bác Hồ sống mãi">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">Bộ truyện tranh mang chủ đề Bác Hồ sống mãi</h5>
-                                <p class="card-text">Chính là một cố gắng của các tác giả và nhà xuất bản trong việc
-                                    thực hiện lời dạy của Bác Hồ, từng khuôn hình và từng câu chuyện mang nội dung giáo
-                                    dục đậm đà đầy ý vị.</p>
-                                <p class="fw-bold">Giá: $100</p>
+                                <p class="card-text">
+                                    Bộ truyện tranh tái hiện hình ảnh Bác Hồ qua các câu chuyện gần gũi, sinh động.
+                                    Sách giúp người đọc, đặc biệt là học sinh, hiểu hơn về tư tưởng và đạo đức của Bác
+                                    thông qua những bài học nhẹ nhàng và dễ tiếp thu.
+                                </p>
+                                <p class="fw-bold">Giá: 100.000đ</p>
                                 <button class="btn btn-primary w-100 mt-auto">
                                     <i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ hàng
                                 </button>
@@ -299,14 +354,16 @@
 
                     <!-- Product 2 -->
                     <div class="col-md-3 mb-4">
-                        <div class="card h-100">
-                            <img src="img/book2.jpg" class="card-img-top" alt="Nhật ký trong tù">
+                        <div class="card h-100" data-category="van-hoc">
+                            <img src="img/book3.jpg" class="card-img-top" alt="Nhật ký trong tù">
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">Tác Phẩm Văn Học Trong Nhà Trường - Nhật Ký Trong Tù</h5>
-                                <p class="card-text">"Nhật ký trong tù" là tập thơ chữ Hán gồm 133 bài thơ do Chủ tịch
-                                    Hồ Chí Minh sáng tác từ 29/08/1942 đến 10/09/1943. Mang ý nghĩa sâu sắc về cách
-                                    mạng Việt Nam.</p>
-                                <p class="fw-bold">Giá: $150</p>
+                                <h5 class="card-title">Nhật Ký Trong Tù</h5>
+                                <p class="card-text">
+                                    Nhật ký trong tù gồm 133 bài thơ chữ Hán do Chủ tịch Hồ Chí Minh sáng tác
+                                    trong thời gian bị giam cầm từ 1942–1943. Tác phẩm có giá trị lớn về tinh thần,
+                                    tư tưởng và nghệ thuật, phù hợp cho học sinh – sinh viên nghiên cứu văn học Việt Nam.
+                                </p>
+                                <p class="fw-bold">Giá: 150.000đ</p>
                                 <button class="btn btn-primary w-100 mt-auto">
                                     <i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ hàng
                                 </button>
@@ -316,14 +373,15 @@
 
                     <!-- Product 3 -->
                     <div class="col-md-3 mb-4">
-                        <div class="card h-100">
-                            <img src="img/book3.jpg" class="card-img-top" alt="Búp Sen Xanh, Bông Sen Vàng">
+                        <div class="card h-100" data-category="van-hoc">
+                            <img src="img/book2.jpg" class="card-img-top" alt="Búp Sen Xanh, Bông Sen Vàng">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">Búp Sen Xanh, Bông Sen Vàng</h5>
-                                <p class="card-text">Hành trình của một cậu bé xứ Nghệ mang trong mình khát vọng lớn
-                                    lao. Mỗi trang sách là mảnh ghép về hành trình hình thành tư tưởng, ra đi tìm đường
-                                    cứu nước.</p>
-                                <p class="fw-bold">Giá: $120</p>
+                                <p class="card-text">
+                                    Cuốn sách kể về tuổi thơ, nhân cách và hành trình hình thành tư tưởng yêu nước của Bác Hồ.
+                                    Nội dung nhẹ nhàng, truyền cảm hứng, phù hợp cho độc giả muốn tìm hiểu về cuộc đời Bác từ thuở nhỏ.
+                                </p>
+                                <p class="fw-bold">Giá: 120.000đ</p>
                                 <button class="btn btn-primary w-100 mt-auto">
                                     <i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ hàng
                                 </button>
@@ -333,13 +391,15 @@
 
                     <!-- Product 4 -->
                     <div class="col-md-3 mb-4">
-                        <div class="card h-100">
+                        <div class="card h-100" data-category="thieu-nhi">
                             <img src="img/book4.jpg" class="card-img-top" alt="Chuyện Kể Từ Làng Sen">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">Chuyện Kể Từ Làng Sen</h5>
-                                <p class="card-text">Chuyện kể từ làng Sen, Bác Hồ cầu hiền tài, Bác Hồ - tấm gương
-                                    sáng mãi, Bác Hồ với thiếu niên nhi đồng...</p>
-                                <p class="fw-bold">Giá: $120</p>
+                                <p class="card-text">
+                                    Chuyện kể từ làng Sen, Bác Hồ cầu hiền tài, Bác Hồ - tấm gương sáng mãi,
+                                    Bác Hồ với thiếu niên nhi đồng.
+                                </p>
+                                <p class="fw-bold">Giá: 120.000đ</p>
                                 <button class="btn btn-primary w-100 mt-auto">
                                     <i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ hàng
                                 </button>
@@ -349,13 +409,14 @@
 
                     <!-- Product 5 -->
                     <div class="col-md-3 mb-4">
-                        <div class="card h-100">
+                        <div class="card h-100" data-category="lich-su">
                             <img src="img/book5.jpg" class="card-img-top" alt="Các Triều Đại Việt Nam">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">Các Triều Đại Việt Nam</h5>
-                                <p class="card-text">Dân tộc Việt Nam anh hùng đã trải qua hơn bốn ngàn năm lịch sử dựng
-                                    nước và giữ nước.</p>
-                                <p class="fw-bold">Giá: $60</p>
+                                <p class="card-text">
+                                    Dân tộc Việt Nam anh hùng đã trải qua hơn bốn ngàn năm lịch sử dựng nước và giữ nước.
+                                </p>
+                                <p class="fw-bold">Giá: 60.000đ</p>
                                 <button class="btn btn-primary w-100 mt-auto">
                                     <i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ hàng
                                 </button>
@@ -365,13 +426,15 @@
 
                     <!-- Product 6 -->
                     <div class="col-md-3 mb-4">
-                        <div class="card h-100">
+                        <div class="card h-100" data-category="thieu-nhi">
                             <img src="img/book6.jpg" class="card-img-top" alt="Những Anh Hùng Trẻ Tuổi">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">Những Anh Hùng Trẻ Tuổi</h5>
-                                <p class="card-text">Chuyện Cô Gái Ngã Ba Đồng Lộc là câu chuyện về mười cô gái thanh
-                                    niên xung phong đã khắc ghi tên mình.</p>
-                                <p class="fw-bold">Giá: $60</p>
+                                <p class="card-text">
+                                    Chuyện Cô Gái Ngã Ba Đồng Lộc là câu chuyện về mười cô gái thanh niên xung phong
+                                    đã khắc ghi tên mình.
+                                </p>
+                                <p class="fw-bold">Giá: 60.000đ</p>
                                 <button class="btn btn-primary w-100 mt-auto">
                                     <i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ hàng
                                 </button>
@@ -381,13 +444,17 @@
 
                     <!-- Product 7 -->
                     <div class="col-md-3 mb-4">
-                        <div class="card h-100">
+                        <div class="card h-100" data-category="van-hoc">
                             <img src="img/book7.jpg" class="card-img-top" alt="Người đàn ông mang tên OVE">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">Người đàn ông mang tên OVE</h5>
-                                <p class="card-text">Người đàn ông mang tên OVE chính là một cố gắng của các tác giả...
+                                <p class="card-text">
+                                    Là câu chuyện cảm động về một người đàn ông lớn tuổi tính tình khó chịu
+                                    nhưng có trái tim ấm áp. Cuộc sống cô đơn của ông thay đổi khi một gia đình trẻ
+                                    chuyển đến bên cạnh, mang đến những tình huống hài hước và giúp ông tìm lại ý nghĩa cuộc sống.
+                                    Đây là một tiểu thuyết đầy nhân văn, nhẹ nhàng và sâu sắc về tình người.
                                 </p>
-                                <p class="fw-bold">Giá: $60</p>
+                                <p class="fw-bold">Giá: 60.000đ</p>
                                 <button class="btn btn-primary w-100 mt-auto">
                                     <i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ hàng
                                 </button>
@@ -397,13 +464,17 @@
 
                     <!-- Product 8 -->
                     <div class="col-md-3 mb-4">
-                        <div class="card h-100">
+                        <div class="card h-100" data-category="ngoai-ngu">
                             <img src="img/book11.jpg" class="card-img-top" alt="Giáo trình HSK">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">Giáo trình HSK</h5>
-                                <p class="card-text">Giáo trình ôn thi HSK bồi dưỡng ôn thi học sinh giỏi xuất sắc cấp
-                                    thành phố.</p>
-                                <p class="fw-bold">Giá: $60</p>
+                                <p class="card-text">
+                                    Giáo trình HSK 1 được biên soạn theo cấu trúc đề thi chuẩn, phù hợp cho học sinh
+                                    và người mới bắt đầu học tiếng Trung. Sách giúp ôn luyện từ vựng, ngữ pháp
+                                    và kỹ năng làm bài, đặc biệt hữu ích cho học sinh giỏi tham gia các kỳ thi cấp thành phố
+                                    hoặc luyện thi lấy chứng chỉ HSK quốc tế.
+                                </p>
+                                <p class="fw-bold">Giá: 60.000đ</p>
                                 <button class="btn btn-primary w-100 mt-auto">
                                     <i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ hàng
                                 </button>
@@ -413,12 +484,16 @@
 
                     <!-- Product 9 -->
                     <div class="col-md-3 mb-4">
-                        <div class="card h-100">
-                            <img src="img/book2.jpg" class="card-img-top" alt="Bộ truyện tranh Bác Hồ sống mãi 2">
+                        <div class="card h-100" data-category="truyen-tranh">
+                            <img src="img/book13.jpg" class="card-img-top" alt="Truyện Tranh Thám Tử Lừng Danh Conan">
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">Bộ truyện tranh mang chủ đề Bác Hồ sống mãi (Tập 2)</h5>
-                                <p class="card-text">Những câu chuyện tiếp nối, mang giá trị giáo dục sâu sắc.</p>
-                                <p class="fw-bold">Giá: $100</p>
+                                <h5 class="card-title">Truyện Tranh Thám Tử Lừng Danh Conan - Tập 100</h5>
+                                <p class="card-text">
+                                    Tập 100 tiếp tục đưa bạn theo chân Conan phá giải những vụ án hấp dẫn
+                                    với tình tiết cao trào và đầy bất ngờ. Nội dung lôi cuốn, phù hợp cho độc giả
+                                    yêu thích truyện trinh thám và khám phá tư duy phá án.
+                                </p>
+                                <p class="fw-bold">Giá: 99.000đ</p>
                                 <button class="btn btn-primary w-100 mt-auto">
                                     <i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ hàng
                                 </button>
@@ -428,12 +503,17 @@
 
                     <!-- Product 10 -->
                     <div class="col-md-3 mb-4">
-                        <div class="card h-100">
-                            <img src="img/book4.jpg" class="card-img-top" alt="Nhật ký trong tù 2">
+                        <div class="card h-100" data-category="ky-nang">
+                            <img src="img/book14.jpg" class="card-img-top" alt="Thiên Tài Bên Trái, Kẻ Điên Bên Phải">
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">Nhật Ký Trong Tù - Ấn bản đặc biệt</h5>
-                                <p class="card-text">Ấn bản có chú giải đầy đủ, phù hợp cho học sinh - sinh viên.</p>
-                                <p class="fw-bold">Giá: $150</p>
+                                <h5 class="card-title">Thiên Tài Bên Trái, Kẻ Điên Bên Phải</h5>
+                                <p class="card-text">
+                                    Sách “Thiên tài bên trái, kẻ điên bên phải” khám phá ranh giới mong manh
+                                    giữa thiên tài và điên rồ qua những cuộc phỏng vấn có thật với bệnh nhân tâm thần.
+                                    Tác phẩm không phải tiểu thuyết hư cấu, mà là tập hợp ghi chép chân thực, khách quan
+                                    về những thế giới quan độc đáo.
+                                </p>
+                                <p class="fw-bold">Giá: 150.000đ</p>
                                 <button class="btn btn-primary w-100 mt-auto">
                                     <i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ hàng
                                 </button>
@@ -443,13 +523,16 @@
 
                     <!-- Product 11 -->
                     <div class="col-md-3 mb-4">
-                        <div class="card h-100">
-                            <img src="img/book1.jpg" class="card-img-top" alt="Búp Sen Xanh bản mới">
+                        <div class="card h-100" data-category="van-hoc">
+                            <img src="img/book15.jpg" class="card-img-top" alt="Cây Cam Ngọt Của Tôi">
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">Búp Sen Xanh - Tái bản</h5>
-                                <p class="card-text">Tái bản với hình minh họa mới, nội dung bám sát chương trình học.
+                                <h5 class="card-title">Cây Cam Ngọt Của Tôi</h5>
+                                <p class="card-text">
+                                    “Cây cam ngọt của tôi” của José Mauro de Vasconcelos không chỉ đơn thuần là
+                                    một cuốn tiểu thuyết về tuổi thơ, mà là một tác phẩm văn học kinh điển đã chạm đến
+                                    trái tim hàng triệu độc giả trên khắp thế giới từ năm 1968.
                                 </p>
-                                <p class="fw-bold">Giá: $120</p>
+                                <p class="fw-bold">Giá: 120.000đ</p>
                                 <button class="btn btn-primary w-100 mt-auto">
                                     <i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ hàng
                                 </button>
@@ -459,12 +542,15 @@
 
                     <!-- Product 12 -->
                     <div class="col-md-3 mb-4">
-                        <div class="card h-100">
-                            <img src="img/book3.jpg" class="card-img-top" alt="Chuyện Kể Từ Làng Sen bản mới">
+                        <div class="card h-100" data-category="giao-khoa">
+                            <img src="img/book16.jpg" class="card-img-top" alt="Sách Toán lớp 12">
                             <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">Chuyện Kể Từ Làng Sen - Bản mở rộng</h5>
-                                <p class="card-text">Thêm nhiều câu chuyện và tư liệu quý về cuộc đời Bác Hồ.</p>
-                                <p class="fw-bold">Giá: $120</p>
+                                <h5 class="card-title">Sách Toán lớp 12</h5>
+                                <p class="card-text">
+                                    Sách Toán lớp 12 bao gồm sách giáo khoa, sách bài tập và tài liệu tham khảo,
+                                    giúp học sinh chuẩn bị cho kỳ thi tốt nghiệp THPT.
+                                </p>
+                                <p class="fw-bold">Giá: 89.000đ</p>
                                 <button class="btn btn-primary w-100 mt-auto">
                                     <i class="bi bi-cart-plus-fill"></i> Thêm vào giỏ hàng
                                 </button>
@@ -555,12 +641,19 @@
                 </div>
                 <div class="modal-body">
                     <ul id="cartList" class="list-group"></ul>
+
+                    <!-- Tổng tiền giỏ hàng -->
+                    <div class="mt-3 text-end">
+                        <span class="fw-semibold">Tổng tiền: </span>
+                        <span id="cartTotalPrice" class="fw-bold text-danger"></span>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                     <!-- Nút thanh toán trong giỏ hàng -->
                     <button class="btn btn-primary btn-checkout">Thanh toán</button>
                 </div>
+
             </div>
         </div>
     </div>
